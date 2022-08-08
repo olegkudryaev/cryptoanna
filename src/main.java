@@ -2,7 +2,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Scanner;
 
-public class main {
+public class main {йцуй
     public static void main(String[] args) throws IOException {
         Encoder encoder = new Encoder();
         Scanner consoleText = new Scanner(System.in);
