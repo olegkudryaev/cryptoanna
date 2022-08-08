@@ -2,8 +2,9 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Scanner;
 
-public class main {йцуй
+public class main {
     public static void main(String[] args) throws IOException {
+
         Encoder encoder = new Encoder();
         Scanner consoleText = new Scanner(System.in);
         System.out.println("Выбери действие, введя его номер.\n" +
