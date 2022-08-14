@@ -6,6 +6,7 @@ public class main {
     public static void main(String[] args) throws IOException {
 
         Encoder encoder = new Encoder();
+        BruteForce bruteForce = new BruteForce();
         Scanner consoleText = new Scanner(System.in);
         System.out.println("Выбери действие, введя его номер.\n" +
                 "1 Зашифровать текст в файле с помощью ключа\n" +
@@ -29,6 +30,7 @@ public class main {
                 int number = Integer.parseInt(consoleText.nextLine());
                 StringBuilder moveText = encoder.moveText(text, number);
 
+
                 System.out.println("Введите адрес, для создания файла с зашифрованным текстом");
                 String str = consoleText.nextLine();
                 Path pathToCrFile = Path.of(str);
@@ -36,7 +38,19 @@ public class main {
 
                 break;
             } else if (question.equals("2")) {
-//                fileAddressRequestforDecryption();
+                System.out.println("Введите путь до файла");
+                Path pathToCrFile = Path.of(consoleText.nextLine());
+                StringBuilder text = encoder.readCryptoFile(pathToCrFile);
+
+                System.out.println("Введите ключ от 1 до 100");
+                int number = Integer.parseInt(consoleText.nextLine());
+                StringBuilder moveText = encoder.moveCryptoText(text, number);
+
+                System.out.println("Введите адрес, для создания файла с расшифрованным текстом");
+                String str = consoleText.nextLine();
+                Path pathToFile = Path.of(str);
+                encoder.textNormalLoading(moveText, pathToFile);
+
                 break;
             } else if (question.equals("3")) {
                 System.out.println(" Вы выбрали криптоанализ\n" +
@@ -47,7 +61,18 @@ public class main {
                 String choiceOfMethod = consoleText.nextLine();
                 if (choiceOfMethod.equals("A")) {
                     System.out.println("Выбран метод Brute force");
-                    //           fileAddressRequestforBruteForce();
+
+                    System.out.println("Введите путь до файла");
+                    Path pathToCrFile = Path.of(consoleText.nextLine());
+                    StringBuilder stringBuilder = bruteForce.readFileForBrute(pathToCrFile);
+                    StringBuilder stringBuilder1 = bruteForce.examText(stringBuilder);
+
+                    System.out.println("Введите адрес, для создания файла с расшифрованным текстом");
+                    String str = consoleText.nextLine();
+                    Path pathToFile = Path.of(str);
+                    encoder.textNormalLoading(stringBuilder1, pathToFile);
+
+
                     break;
                 } else if (choiceOfMethod.equals("B")) {
                     System.out.println("Выбран метод статистического анализа");
@@ -62,7 +87,6 @@ public class main {
                 System.out.println("Ввели недопустимые значения");
             }
         }
-        System.out.println("Ввели недопустимые значения");
 
 //        Encoder encoder = new Encoder();
 //       StringBuilder str = new StringBuilder("a");
